@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Cadastro</string>
+    <string name="name">Nome</string>
+    <string name="idade">Idade</string>
+    <string name="cpf">CPF</string>
+    <string name="genero">Genêro</string>
+    <string name="ocupacao">Países já visitados</string>
+    <string name="pets">Pets na residência</string>
 </resources>
