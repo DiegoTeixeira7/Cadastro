@@ -11,10 +11,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnGenre;
-    private Button btnOccupation;
-    private Button btnCountry;
-    private Button btnPets;
+    private Button genreBtn;
+    private Button occupationBtn;
+    private Button countryBtn;
+    private Button petsBtn;
 
     private CharSequence[] selectGenre;
     private CharSequence[] selectOccupation;
@@ -22,19 +22,20 @@ public class MainActivity extends AppCompatActivity {
     private CharSequence[] selectPets;
 
     private boolean[] selectCountryItems;
+    private boolean[] selectPetItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnGenre = findViewById(R.id.genreBtn);
+        genreBtn = findViewById(R.id.genreBtn);
 
         selectGenre = new CharSequence[] {
             "Masculino", "Feminino", "Outro", "Prefiro não dizer"
         };
 
-        btnGenre.setOnClickListener(new View.OnClickListener() {
+        genreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MainActivity.this)
@@ -65,13 +66,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnOccupation = findViewById(R.id.occupationBtn);
+        occupationBtn = findViewById(R.id.occupationBtn);
 
         selectOccupation = new CharSequence[] {
                 "Estudante", "Engenheiro(a)", "Médico(a)", "Arquieto(a)", "Eletricista", "Diarista", "Professor", "Outro"
         };
 
-        btnOccupation.setOnClickListener(new View.OnClickListener() {
+        occupationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MainActivity.this)
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnCountry = findViewById(R.id.countryBtn);
+        countryBtn = findViewById(R.id.countryBtn);
 
         selectCountry = new CharSequence[] {
                 "EUA", "Rússia", "Argentina", "Canadá", "Irlanda", "Outro(s)", "Nenhum"
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 false, false, false, false, false, false, false
         };
 
-        btnCountry.setOnClickListener(new View.OnClickListener() {
+        countryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MainActivity.this)
@@ -144,10 +145,45 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        btnPets = findViewById(R.id.petsBtn);
+        petsBtn = findViewById(R.id.petsBtn);
 
         selectPets = new CharSequence[] {
-                "Cachorro", "Gato", "Pássaro", "Outro", "Nenhum"
+                "Cachorro", "Gato", "Pássaro", "Outro(s)", "Nenhum"
         };
+
+        selectPetItems = new boolean[]{
+                false, false, false, false, false
+        };
+
+        petsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MainActivity.this)
+                        .setTitle("Selecione os pets que você possui em sua residência");
+
+                builder.setMultiChoiceItems(selectPets, selectPetItems, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+
+                    }
+                });
+
+                builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                builder.setNegativeButton("Sair", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.show();
+            }
+        });
     }
 }
