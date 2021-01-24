@@ -24,14 +24,14 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/idadeText"
+        android:id="@+id/ageText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_below="@+id/nameText"
-        android:hint="@string/idade"
+        android:hint="@string/age"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -48,7 +48,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_below="@+id/idadeText"
+        android:layout_below="@+id/ageText"
         android:hint="@string/cpf"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -59,13 +59,15 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Spinner
-        android:id="@+id/countrySpn"
+    <Button
+        android:id="@+id/genreBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/cpfText"
         android:layout_marginTop="10dp"
-        android:layout_alignStart="@+id/nameText"
-        android:layout_below="@+id/cpfText"/>
+        android:text="@string/genre"
+        app:icon="@drawable/ic_baseline_arrow_drop_down_24"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        />
 
 </RelativeLayout>

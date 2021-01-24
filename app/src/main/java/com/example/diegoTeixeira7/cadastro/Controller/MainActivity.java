@@ -1,45 +1,76 @@
 package com.example.diegoTeixeira7.cadastro.Controller;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.Spinner;
-import com.example.diegoTeixeira7.cadastro.R;
-import com.example.diegoTeixeira7.cadastro.Util.MyAdapter;
-import com.example.diegoTeixeira7.cadastro.Util.StateSpinner;
 
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import com.example.diegoTeixeira7.cadastro.R;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String[] select_genre = {
-            "Selecione seu gênero", "Masculino", "Feminino", "Outro (Por favor especifique)", "Prefiro não dizer"};
+    private Button btn;
 
-    final String[] select_ocupation = {
-            "Selecione sua ocupação", "Engenheiro", "Arquiteto", "Pedreiro", "Prefiro não dizer"};
-
-    final String[] select_country = {
-            "Selecione os países que você já visitou", "EUA", "Rússia", "França", "Nenhum"};
-
+    private CharSequence[] select_genre;
+    private CharSequence[] select_occupation;
+    private CharSequence[] select_country;
+    private CharSequence[] select_pets;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Spinner spinner = (Spinner) findViewById(R.id.countrySpn);
+        btn = findViewById(R.id.genreBtn);
 
-        ArrayList<StateSpinner> listCountry = new ArrayList<>();
+        select_genre = new CharSequence[] {
+            "Masculino", "Feminino", "Outro (Por favor especifique)", "Prefiro não dizer"
+        };
 
-        for (int i = 0; i < select_country.length; i++) {
-            StateSpinner stateSpnCountry = new StateSpinner();
-            stateSpnCountry.setTitle(select_country[i]);
-            stateSpnCountry.setSelected(false);
-            listCountry.add(stateSpnCountry);
-        }
 
-        MyAdapter myAdapter = new MyAdapter(MainActivity.this, 0,
-                listCountry);
-        spinner.setAdapter(myAdapter);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MainActivity.this)
+                        .setTitle("Seu gênero");
+
+                builder.setSingleChoiceItems(select_genre, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                builder.setNegativeButton("Sair", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.show();
+            }
+        });
+
+        select_occupation = new CharSequence[] {
+                "Engenheiro", "Feminino", "França", "Nenhum"
+        };
+
+        select_country = new CharSequence[] {
+                "EUA", "Rússia", "Pedreiro", "Prefiro não dizer"
+        };
+
+        select_pets = new CharSequence[] {
+                "Cachorro", "Gato", "Pássaro", "Nenhum"
+        };
     }
-
 }
