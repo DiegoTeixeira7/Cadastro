@@ -70,4 +70,37 @@
         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
         />
 
+    <Button
+        android:id="@+id/occupationBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/genreBtn"
+        android:layout_marginTop="10dp"
+        android:text="@string/occupation"
+        app:icon="@drawable/ic_baseline_arrow_drop_down_24"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        />
+
+    <Button
+        android:id="@+id/countryBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/occupationBtn"
+        android:layout_marginTop="10dp"
+        android:text="@string/country"
+        app:icon="@drawable/ic_baseline_arrow_drop_down_24"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        />
+
+    <Button
+        android:id="@+id/petsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/countryBtn"
+        android:layout_marginTop="10dp"
+        android:text="@string/pets"
+        app:icon="@drawable/ic_baseline_arrow_drop_down_24"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        />
+
 </RelativeLayout>

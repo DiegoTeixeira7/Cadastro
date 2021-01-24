@@ -4,12 +4,7 @@
     <string name="age">Idade</string>
     <string name="cpf">CPF</string>
     <string name="genre">Gênero</string>
-    <string name="ocupacao">Países já visitados</string>
+    <string name="occupation">Ocupação</string>
+    <string name="country">Países já visitados</string>
     <string name="pets">Pets na residência</string>
-    <string name="male">Feminino</string>
-    <string name="female">Masculino</string>
-    <string name="other">Outro (Por favor especifique)</string>
-    <string name="secret">Prefiro não dizer</string>
-    <string name="spinnerGenretitle">Prefiro não dizer</string>
-    <string name="confirm">Confirmar</string>
 </resources>
