@@ -17,6 +17,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -35,6 +36,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ageEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -53,6 +55,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cpfEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -101,6 +104,17 @@
         android:text="@string/pets"
         app:icon="@drawable/ic_baseline_arrow_drop_down_24"
         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        />
+
+    <Button
+        android:id="@+id/confirmBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/petsBtn"
+        android:layout_marginTop="20dp"
+        android:text="@string/register"
+        android:onClick="Cadastrar"
         />
 
 </RelativeLayout>

@@ -4,10 +4,19 @@ package com.example.diegoTeixeira7.cadastro.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import com.example.diegoTeixeira7.cadastro.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import static java.lang.Integer.parseInt;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean[] selectCountryItems;
     private boolean[] selectPetItems;
+
+    private String name;
+    private int age;
+    private String CPF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -185,5 +198,34 @@ public class MainActivity extends AppCompatActivity {
                 builder.show();
             }
         });
+    }
+
+    public void Cadastrar(View view) {
+        TextInputEditText nameEdit = findViewById(R.id.nameEdit);
+        TextInputEditText ageEdit = findViewById(R.id.ageEdit);
+        TextInputEditText CPFEdit = findViewById(R.id.cpfEdit);
+
+        name = nameEdit.getText().toString();
+        CPF = CPFEdit.getText().toString();
+
+
+        if (name.equals("") || ageEdit.getText().toString().equals("") || CPF.equals("")) {
+            Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
+        } else {
+            try {
+                age = parseInt(ageEdit.getText().toString());
+
+                if(age < 0 || age > 150) {
+                    Toast.makeText(this, "Idade inválida!", Toast.LENGTH_LONG).show();
+                } else {
+                    CPF = CPF.replaceAll("[^0-9]+", "");
+
+                    //Toast.makeText(this, CPF, Toast.LENGTH_LONG).show();
+                }
+
+            }catch (Exception e) {
+                Toast.makeText(this, "Digite apenas número no campo idade", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
