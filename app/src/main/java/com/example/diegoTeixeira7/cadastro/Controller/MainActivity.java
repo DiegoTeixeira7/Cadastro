@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.diegoTeixeira7.cadastro.Controller.Util.ValidaCPF;
 import com.example.diegoTeixeira7.cadastro.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
@@ -208,7 +209,6 @@ public class MainActivity extends AppCompatActivity {
         name = nameEdit.getText().toString();
         CPF = CPFEdit.getText().toString();
 
-
         if (name.equals("") || ageEdit.getText().toString().equals("") || CPF.equals("")) {
             Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
         } else {
@@ -220,7 +220,11 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     CPF = CPF.replaceAll("[^0-9]+", "");
 
-                    //Toast.makeText(this, CPF, Toast.LENGTH_LONG).show();
+                    if (ValidaCPF.isCPF(CPF)) {
+                        //Toast.makeText(this, ValidaCPF.imprimeCPF(CPF), Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(this, "Erro, CPF invalido", Toast.LENGTH_LONG).show();
+                    }
                 }
 
             }catch (Exception e) {
