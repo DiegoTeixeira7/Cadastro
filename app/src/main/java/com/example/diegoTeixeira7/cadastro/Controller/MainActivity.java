@@ -34,9 +34,17 @@ public class MainActivity extends AppCompatActivity {
     private boolean[] selectCountryItems;
     private boolean[] selectPetItems;
 
-    private String name;
     private int age;
+    private String name;
     private String CPF;
+    private String genre;
+    private String occupation;
+    private String countries;
+    private String pets;
+
+    private boolean[] confirm = new boolean[]{
+        false, false, false, false
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -58,14 +66,14 @@ public class MainActivity extends AppCompatActivity {
                 builder.setSingleChoiceItems(selectGenre, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        genre = selectGenre[which].toString();
                     }
                 });
 
                 builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        confirm[0] = true;
                     }
                 });
 
@@ -95,14 +103,14 @@ public class MainActivity extends AppCompatActivity {
                 builder.setSingleChoiceItems(selectOccupation, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        occupation = selectOccupation[which].toString();
                     }
                 });
 
                 builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        confirm[1] = true;
                     }
                 });
 
@@ -143,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        confirm[2] = true;
                     }
                 });
 
@@ -178,14 +186,13 @@ public class MainActivity extends AppCompatActivity {
                 builder.setMultiChoiceItems(selectPets, selectPetItems, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-
                     }
                 });
 
                 builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        confirm[3] = true;
                     }
                 });
 
@@ -221,7 +228,24 @@ public class MainActivity extends AppCompatActivity {
                     CPF = CPF.replaceAll("[^0-9]+", "");
 
                     if (ValidaCPF.isCPF(CPF)) {
-                        //Toast.makeText(this, ValidaCPF.imprimeCPF(CPF), Toast.LENGTH_LONG).show();
+                        if(!confirm[0]) {
+                            Toast.makeText(this, "Por favor, confirme seu gênero!", Toast.LENGTH_LONG).show();
+                        }
+
+                        if(!confirm[1]) {
+                            Toast.makeText(this, "Por favor, confirme sua ocupação!", Toast.LENGTH_LONG).show();
+                        }
+
+                        if(!confirm[2]) {
+                            Toast.makeText(this, "Por favor, selecione os países que já visitou!", Toast.LENGTH_LONG).show();
+                        }
+
+                        if(!confirm[3]) {
+                            Toast.makeText(this, "Por favor, selecione os pets que possui!", Toast.LENGTH_LONG).show();
+                        }
+
+                        Toast.makeText(this, "" + selectCountryItems[0] + selectCountryItems[1] + selectCountryItems[2] + selectCountryItems[3], Toast.LENGTH_LONG).show();
+
                     } else {
                         Toast.makeText(this, "Erro, CPF invalido", Toast.LENGTH_LONG).show();
                     }
