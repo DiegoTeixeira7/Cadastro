@@ -208,14 +208,14 @@ public class MainActivity extends AppCompatActivity {
         CPF = CPFEdit.getText().toString();
 
         if (name.equals("") || ageEdit.getText().toString().equals("") || CPF.equals("")) {
-            Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
         } else {
             name = name.trim().toLowerCase();
             try {
                 age = parseInt((ageEdit.getText().toString()).replaceAll(" ", ""));
 
                 if(age < 0 || age > 150) {
-                    Toast.makeText(this, "Idade inválida!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Idade inválida!", Toast.LENGTH_SHORT).show();
                 } else {
                     CPF = CPF.replaceAll("[^0-9]+", "");
 
@@ -223,13 +223,13 @@ public class MainActivity extends AppCompatActivity {
                         //  Validating dialogs
 
                         if(!confirm[0]) {
-                            Toast.makeText(this, "Por favor, confirme seu gênero!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(this, "Por favor, confirme seu gênero!", Toast.LENGTH_SHORT).show();
                         } else {
                             if (!confirm[1]) {
-                                Toast.makeText(this, "Por favor, confirme sua ocupação!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(this, "Por favor, confirme sua ocupação!", Toast.LENGTH_SHORT).show();
                             } else {
                                 if (!confirm[2]) {
-                                    Toast.makeText(this, "Por favor, selecione os países que já visitou!", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(this, "Por favor, selecione os países que já visitou!", Toast.LENGTH_SHORT).show();
                                 } else {
                                     countries = "";
 
@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
                                     }
 
                                     if (!confirm[3]) {
-                                        Toast.makeText(this, "Por favor, selecione os pets que possui!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(this, "Por favor, selecione os pets que possui!", Toast.LENGTH_SHORT).show();
                                     } else {
                                         pets = "";
 
@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     } else {
-                        Toast.makeText(this, "Erro, CPF invalido", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Erro, CPF invalido", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -320,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
         // Salvar no BD
 
         cleanVariables();
-        Toast.makeText(this, "Cadastro feito!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Cadastro feito!", Toast.LENGTH_SHORT).show();
     }
 
     private void cleanVariables() {
