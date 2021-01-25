@@ -14,6 +14,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:hint="@string/name"
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        app:endIconMode="clear_text"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -33,6 +35,8 @@
         android:layout_marginRight="10dp"
         android:layout_below="@+id/nameText"
         android:hint="@string/age"
+        app:startIconDrawable="@drawable/ic_baseline_cake_24"
+        app:endIconMode="clear_text"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -52,6 +56,8 @@
         android:layout_marginRight="10dp"
         android:layout_below="@+id/ageText"
         android:hint="@string/cpf"
+        app:startIconDrawable="@drawable/ic_baseline_security_24"
+        app:endIconMode="clear_text"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
