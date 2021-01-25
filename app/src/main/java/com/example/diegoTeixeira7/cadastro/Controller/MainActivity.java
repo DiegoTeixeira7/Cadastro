@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // creates the genre choice dialogue
         Button genreBtn = findViewById(R.id.genreBtn);
 
         selectGenre = new CharSequence[] {
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // creates the occupation choice dialogue
         Button occupationBtn = findViewById(R.id.occupationBtn);
 
         selectOccupation = new CharSequence[] {
@@ -120,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // creates the country choice dialogue
         Button countryBtn = findViewById(R.id.countryBtn);
 
         selectCountry = new CharSequence[] {
@@ -161,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        // creates the pets choice dialogue
         Button petsBtn = findViewById(R.id.petsBtn);
 
         selectPets = new CharSequence[] {
@@ -291,6 +294,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void save() {
+        // creates dialog to confirm data
+
         String data = "Nome: " + name + "\n" +
                 "Idade: " + age + "\n" +
                 "CPF: " + ValidaCPF.imprimeCPF(CPF) + "\n" +
@@ -321,7 +326,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveBD() {
-        //
+        // search the BD if there is a user with the registered cpf registered, if not registered
+
         Cursor c = BancoDadosSingleton.getInstance().buscar("Records", new String[]{"CPF"}, "CPF='"+CPF+"'", "");
         String register = "";
         while (c.moveToNext()) {
