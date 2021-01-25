@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         Button occupationBtn = findViewById(R.id.occupationBtn);
 
         selectOccupation = new CharSequence[] {
-                "Estudante", "Engenheiro(a)", "Médico(a)", "Arquieto(a)", "Eletricista", "Diarista", "Professor", "Outro"
+                "Estudante", "Engenheiro(a)", "Médico(a)", "Arquiteto(a)", "Eletricista", "Diarista", "Professor", "Outro"
         };
 
         occupationBtn.setOnClickListener(new View.OnClickListener() {
@@ -220,9 +220,59 @@ public class MainActivity extends AppCompatActivity {
                     CPF = CPF.replaceAll("[^0-9]+", "");
 
                     if (ValidaCPF.isCPF(CPF)) {
+                        //  Validating dialogs
 
-                        if(validateDialogs()) {
-                            save();
+                        if(!confirm[0]) {
+                            Toast.makeText(this, "Por favor, confirme seu gênero!", Toast.LENGTH_LONG).show();
+                        } else {
+                            if (!confirm[1]) {
+                                Toast.makeText(this, "Por favor, confirme sua ocupação!", Toast.LENGTH_LONG).show();
+                            } else {
+                                if (!confirm[2]) {
+                                    Toast.makeText(this, "Por favor, selecione os países que já visitou!", Toast.LENGTH_LONG).show();
+                                } else {
+                                    countries = "";
+
+                                    for (int i = 0; i < selectCountryItems.length; i++) {
+                                        if (selectCountryItems[i]) {
+                                            if ((i == (selectCountryItems.length - 1)) && (countries.length() == 0)) {
+                                                countries = selectCountry[i].toString();
+                                            } else if (i != (selectCountryItems.length - 1)) {
+                                                countries = (countries.length() > 0) ? countries + ", " + selectCountry[i] :
+                                                        selectCountry[i].toString();
+                                            }
+                                        }
+                                    }
+
+                                    if (countries.length() == 0) {
+                                        countries = "Nenhum";
+                                    }
+
+                                    if (!confirm[3]) {
+                                        Toast.makeText(this, "Por favor, selecione os pets que possui!", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        pets = "";
+
+                                        for (int i = 0; i < selectPetItems.length; i++) {
+                                            if (selectPetItems[i]) {
+                                                if ((i == (selectPetItems.length - 1)) && (pets.length() == 0)) {
+                                                    pets = selectPets[i].toString();
+                                                } else if (i != (selectPetItems.length - 1)) {
+                                                    pets = (pets.length() > 0) ? pets + ", " + selectPets[i] :
+                                                            selectPets[i].toString();
+                                                }
+                                            }
+                                        }
+
+                                        if (pets.length() == 0) {
+                                            pets = "Nenhum";
+                                        }
+
+                                        // Function to check the data
+                                        save();
+                                    }
+                                }
+                            }
                         }
 
                     } else {
@@ -234,64 +284,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Digite apenas número no campo idade", Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-    private boolean validateDialogs() {
-        if(!confirm[0]) {
-            Toast.makeText(this, "Por favor, confirme seu gênero!", Toast.LENGTH_LONG).show();
-            return false;
-        }
-
-        if(!confirm[1]) {
-            Toast.makeText(this, "Por favor, confirme sua ocupação!", Toast.LENGTH_LONG).show();
-            return false;
-        }
-
-        if(!confirm[2]) {
-            Toast.makeText(this, "Por favor, selecione os países que já visitou!", Toast.LENGTH_LONG).show();
-            return false;
-        } else {
-            countries = "";
-
-            for(int i=0; i<selectCountryItems.length; i++) {
-                if(selectCountryItems[i]) {
-                    if((i == (selectCountryItems.length-1)) && (countries.length() == 0)) {
-                        countries = selectCountry[i].toString();
-                    } else if(i != (selectCountryItems.length-1)){
-                        countries = (countries.length() > 0) ? countries + ", " + selectCountry[i] :
-                                selectCountry[i].toString();
-                    }
-                }
-            }
-
-            if(countries.length() == 0 ) {
-                countries = "Nenhum";
-            }
-        }
-
-        if(!confirm[3]) {
-            Toast.makeText(this, "Por favor, selecione os pets que possui!", Toast.LENGTH_LONG).show();
-            return false;
-        } else {
-            pets = "";
-
-            for(int i=0; i<selectPetItems.length; i++) {
-                if(selectPetItems[i]) {
-                    if((i == (selectPetItems.length-1)) && (pets.length() == 0)) {
-                        pets = selectPets[i].toString();
-                    } else if(i != (selectPetItems.length-1)){
-                        pets = (pets.length() > 0) ? pets + ", " + selectPets[i] :
-                                selectPets[i].toString();
-                    }
-                }
-            }
-
-            if(pets.length() == 0 ) {
-                pets = "Nenhum";
-            }
-        }
-
-        return  true;
     }
 
     private void save() {
