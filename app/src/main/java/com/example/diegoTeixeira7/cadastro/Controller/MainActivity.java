@@ -2,12 +2,16 @@ package com.example.diegoTeixeira7.cadastro.Controller;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.diegoTeixeira7.cadastro.Util.BancoDadosSingleton;
 import com.example.diegoTeixeira7.cadastro.Util.ValidaCPF;
 import com.example.diegoTeixeira7.cadastro.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -317,10 +321,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveBD() {
-        // Salvar no BD
+        //
+        Cursor c = BancoDadosSingleton.getInstance().buscar("Records", new String[]{"CPF"}, "CPF='"+CPF+"'", "");
+        String register = "";
+        while (c.moveToNext()) {
+            int L = c.getColumnIndex("CPF");
+            register = c.getString(L);
+        }
 
-        cleanVariables();
-        Toast.makeText(this, "Cadastro feito!", Toast.LENGTH_SHORT).show();
+        c.close();
+
+        if(register.equals("")) {
+            ContentValues valores = new ContentValues();
+            valores.put("name", name);
+            valores.put("age", age);
+            valores.put("CPF", CPF);
+            valores.put("genre", genre);
+            valores.put("occupation", occupation);
+            valores.put("countries", countries);
+            valores.put("pets", pets);
+
+            BancoDadosSingleton.getInstance().inserir("Records", valores);
+
+            cleanVariables();
+            Toast.makeText(this, "Cadastro realizado!", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Erro, CPF já estava cadastrado!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void cleanVariables() {
