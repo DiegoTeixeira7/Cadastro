@@ -1,4 +1,4 @@
-package com.example.diegoTeixeira7.cadastro.Controller.Util;
+package com.example.diegoTeixeira7.cadastro.Util;
 
 import java.util.InputMismatchException;
 

@@ -4,27 +4,18 @@ package com.example.diegoTeixeira7.cadastro.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.InputFilter;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.diegoTeixeira7.cadastro.Controller.Util.ValidaCPF;
+import com.example.diegoTeixeira7.cadastro.Util.ValidaCPF;
 import com.example.diegoTeixeira7.cadastro.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import static java.lang.Integer.parseInt;
 
 public class MainActivity extends AppCompatActivity {
-
-    private Button genreBtn;
-    private Button occupationBtn;
-    private Button countryBtn;
-    private Button petsBtn;
 
     private CharSequence[] selectGenre;
     private CharSequence[] selectOccupation;
@@ -51,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        genreBtn = findViewById(R.id.genreBtn);
+        Button genreBtn = findViewById(R.id.genreBtn);
 
         selectGenre = new CharSequence[] {
             "Masculino", "Feminino", "Outro", "Prefiro não dizer"
@@ -88,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        occupationBtn = findViewById(R.id.occupationBtn);
+        Button occupationBtn = findViewById(R.id.occupationBtn);
 
         selectOccupation = new CharSequence[] {
                 "Estudante", "Engenheiro(a)", "Médico(a)", "Arquieto(a)", "Eletricista", "Diarista", "Professor", "Outro"
@@ -125,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        countryBtn = findViewById(R.id.countryBtn);
+        Button countryBtn = findViewById(R.id.countryBtn);
 
         selectCountry = new CharSequence[] {
                 "EUA", "Rússia", "Argentina", "Canadá", "Irlanda", "Outro(s)", "Nenhum"
@@ -167,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        petsBtn = findViewById(R.id.petsBtn);
+        Button petsBtn = findViewById(R.id.petsBtn);
 
         selectPets = new CharSequence[] {
                 "Cachorro", "Gato", "Pássaro", "Outro(s)", "Nenhum"
@@ -231,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
                     if (ValidaCPF.isCPF(CPF)) {
 
                         if(validateDialogs()) {
-                            Toast.makeText(this, name + " - " + age, Toast.LENGTH_LONG).show();
+                            save();
                         }
 
                     } else {
@@ -301,5 +292,66 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return  true;
+    }
+
+    private void save() {
+        String data = "Nome: " + name + "\n" +
+                "Idade: " + age + "\n" +
+                "CPF: " + ValidaCPF.imprimeCPF(CPF) + "\n" +
+                "Gênero: " + genre + "\n" +
+                "Ocupação: " + occupation + "\n" +
+                "Países já visitados: " + countries + "\n" +
+                "Pets na residência: " + pets + "\n";
+
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MainActivity.this)
+                .setTitle("Confirme seus dados")
+                .setMessage(data);
+
+        builder.setPositiveButton("Salvar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+               saveBD();
+            }
+        });
+
+        builder.setNegativeButton("Editar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.show();
+    }
+
+    private void saveBD() {
+        // Salvar no BD
+
+        cleanVariables();
+        Toast.makeText(this, "Cadastro feito!", Toast.LENGTH_LONG).show();
+    }
+
+    private void cleanVariables() {
+        name = "";
+        age = -1;
+        CPF = "";
+        genre = "";
+        occupation = "";
+        countries = "";
+        pets = "";
+
+        TextInputEditText CPFEdit = findViewById(R.id.cpfEdit);
+        TextInputEditText ageEdit = findViewById(R.id.ageEdit);
+        TextInputEditText nameEdit = findViewById(R.id.nameEdit);
+
+        CPFEdit.setText("");
+        ageEdit.setText("");
+        nameEdit.setText(name);
+
+        confirm[0] = false;
+        confirm[1] = false;
+        confirm[2] = false;
+        confirm[3] = false;
+
     }
 }
