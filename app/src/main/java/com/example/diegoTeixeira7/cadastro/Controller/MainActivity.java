@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private int age;
     private String name;
     private String CPF;
-    private String genre;
-    private String occupation;
+    private String genre = "Masculino";
+    private String occupation = "Estudante";
     private String countries = "";
     private String pets = "";
 
