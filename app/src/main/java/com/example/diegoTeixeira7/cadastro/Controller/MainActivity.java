@@ -255,14 +255,29 @@ public class MainActivity extends AppCompatActivity {
                             if(countries.length() == 0 ) {
                                 countries = "Nenhum";
                             }
-
-                            Toast.makeText(this, countries, Toast.LENGTH_LONG).show();
                         }
 
                         if(!confirm[3]) {
                             Toast.makeText(this, "Por favor, selecione os pets que possui!", Toast.LENGTH_LONG).show();
                         } else {
+                            pets = "";
 
+                            for(int i=0; i<selectPetItems.length; i++) {
+                                if(selectPetItems[i]) {
+                                    if((i == (selectPetItems.length-1)) && (pets.length() == 0)) {
+                                        pets = selectPets[i].toString();
+                                    } else if(i != (selectPetItems.length-1)){
+                                        pets = (pets.length() > 0) ? pets + ", " + selectPets[i] :
+                                                selectPets[i].toString();
+                                    }
+                                }
+                            }
+
+                            if(pets.length() == 0 ) {
+                                pets = "Nenhum";
+                            }
+
+                            Toast.makeText(this, pets, Toast.LENGTH_LONG).show();
                         }
 
                     } else {
