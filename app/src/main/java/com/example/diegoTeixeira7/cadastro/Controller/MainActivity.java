@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private String CPF;
     private String genre;
     private String occupation;
-    private String countries;
-    private String pets;
+    private String countries = "";
+    private String pets = "";
 
     private boolean[] confirm = new boolean[]{
         false, false, false, false
@@ -238,13 +238,32 @@ public class MainActivity extends AppCompatActivity {
 
                         if(!confirm[2]) {
                             Toast.makeText(this, "Por favor, selecione os países que já visitou!", Toast.LENGTH_LONG).show();
+                        } else {
+                            countries = "";
+
+                            for(int i=0; i<selectCountryItems.length; i++) {
+                                if(selectCountryItems[i]) {
+                                    if((i == (selectCountryItems.length-1)) && (countries.length() == 0)) {
+                                        countries = selectCountry[i].toString();
+                                    } else if(i != (selectCountryItems.length-1)){
+                                        countries = (countries.length() > 0) ? countries + ", " + selectCountry[i] :
+                                                selectCountry[i].toString();
+                                    }
+                                }
+                            }
+
+                            if(countries.length() == 0 ) {
+                                countries = "Nenhum";
+                            }
+
+                            Toast.makeText(this, countries, Toast.LENGTH_LONG).show();
                         }
 
                         if(!confirm[3]) {
                             Toast.makeText(this, "Por favor, selecione os pets que possui!", Toast.LENGTH_LONG).show();
-                        }
+                        } else {
 
-                        Toast.makeText(this, "" + selectCountryItems[0] + selectCountryItems[1] + selectCountryItems[2] + selectCountryItems[3], Toast.LENGTH_LONG).show();
+                        }
 
                     } else {
                         Toast.makeText(this, "Erro, CPF invalido", Toast.LENGTH_LONG).show();
