@@ -10,6 +10,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 -  [Android](https://developer.android.com/docs)
 -  [Android Studio](https://developer.android.com/studio)
 -  [Gerador de CPF](https://www.4devs.com.br/gerador_de_cpf)
+-  [Material Design](https://material.io/components?platform=android)
 -  [SQLite](https://developer.android.com/training/data-storage/sqlite?hl=pt-br)
 
 ### :arrow_forward: Em Execução:
