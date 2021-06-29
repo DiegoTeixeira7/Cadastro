@@ -30,3 +30,5 @@ $ git clone https://github.com/DiegoTeixeira7/Cadastro.git
 # Abra o projeto em seu Android Studio e execute
 
 ```
+### :memo: Licença
+Este projeto está sob a licença do MIT. Consulte a [LICENSE](https://github.com/DiegoTeixeira7/Cadastro/blob/master/LICENSE) para obter mais informações.
